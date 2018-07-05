@@ -1,21 +1,18 @@
-FROM=openshift/base-centos7
-IMAGE_NAME=bucharestgold/centos7-s2i-nodejs
-
 # These values are changed in each version branch
 # This is the only place they need to be changed
 # other than the README.md file.
 include versions.mk
 
+FROM=bucharestgold/centos7-s2i-nodejs
+IMAGE_NAME=bucharestgold/centos7-s2i-web-app
+
 TARGET=$(IMAGE_NAME):$(IMAGE_TAG)
 
 .PHONY: all
-all: build squash test
+all: build squash
 
 build: Dockerfile s2i contrib
-	docker build \
-	--build-arg NODE_VERSION=$(NODE_VERSION) \
-	--build-arg NPM_VERSION=$(NPM_VERSION) \
-	-t $(TARGET) .
+	docker build -t $(TARGET) .
 
 .PHONY: squash
 squash:

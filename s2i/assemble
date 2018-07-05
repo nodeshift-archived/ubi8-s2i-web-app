@@ -2,10 +2,10 @@
 
 set -e
 
-source /usr/libexec/s2i/env
-
-if [ "$DEV_MODE" == true ] ; then
-	set -x
+# Check to see if there is a node_modules folder
+if [ "$(ls -A /tmp/src/node_modules)" ]; then
+	echo "---> Removing the node_modules folder"
+	rm -rf /tmp/src/node_modules
 fi
 
 chmod 775 -R /tmp/src/.
@@ -39,23 +39,34 @@ if [ ! -z "$NPM_MIRROR" ]; then
 	npm config set registry $NPM_MIRROR
 fi
 
+if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
+  echo "---> Restoring build artifacts..."
+  mv /tmp/artifacts/node_modules ./
+fi
+
 echo "---> Building your Node application from source"
 echo -e "Current git config"
 git config --list
 if [ ! -z "$YARN_ENABLED" ]; then
 	echo "---> Using 'yarn install' with YARN_ARGS"
 	yarn install $YARN_ARGS
+	yarn build
 else
 	echo "---> Installing dependencies"
-	if [ "$DEV_MODE" == true ]; then
-		echo "---> Using 'npm install'"
-		npm install
-	else
-		echo "---> Using 'npm install -s --only=production'"
-		npm install -s --only=production
-	fi
+	echo "---> Using 'npm install'"
+	npm install -d
+	npm run build
 	echo "---> Cleaning up npm cache"
 	rm -rf .npm
-	echo "---> Setting directory write permissions"
-	exec chmod -R g+rw .
+	# echo "---> Setting directory write permissions"
+	# exec chmod -R g+rw .
+fi
+
+echo "---> Building and Installing Web Application from source..."
+if [ -f /tmp/src/nginx.conf ]; then
+  mv /tmp/src/nginx.conf /etc/nginx/nginx.conf
+fi
+
+if [ "$(ls -A /tmp/src)" ]; then
+  mv ./$OUTPUT_DIR/* /usr/share/nginx/html/
 fi
