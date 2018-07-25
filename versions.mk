@@ -1,1 +1,1 @@
-IMAGE_TAG=latest
+IMAGE_TAG=0.0.1
