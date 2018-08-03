@@ -44,7 +44,7 @@ if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
   mv /tmp/artifacts/node_modules ./
 fi
 
-echo "---> Building your Node application from source"
+echo "---> Building your Web Application from source"
 echo -e "Current git config"
 git config --list
 if [ ! -z "$YARN_ENABLED" ]; then
@@ -54,19 +54,22 @@ if [ ! -z "$YARN_ENABLED" ]; then
 else
 	echo "---> Installing dependencies"
 	echo "---> Using 'npm install'"
-	npm install -d
+	npm install -s
 	npm run build
 	echo "---> Cleaning up npm cache"
 	rm -rf .npm
-	# echo "---> Setting directory write permissions"
-	# exec chmod -R g+rw .
 fi
 
-echo "---> Building and Installing Web Application from source..."
-if [ -f /tmp/src/nginx.conf ]; then
-  mv /tmp/src/nginx.conf /etc/nginx/nginx.conf
-fi
+DEPLOY_DIR=/opt/app-root/output
+echo "----> moving built web application to $DEPLOY_DIR"
+mkdir -p $DEPLOY_DIR
+mv ./$OUTPUT_DIR/* $DEPLOY_DIR
 
-if [ "$(ls -A /tmp/src)" ]; then
-  mv ./$OUTPUT_DIR/* /usr/share/nginx/html/
-fi
+
+# echo "---> Building and Installing Web Application from source..."
+# Need to figure out the best way to copy the user defined things to the chained image
+# Or maybe we don't worry about it and that gets fed to the nginx image somehow
+# Or maybe it doesn't matter since there could possibly be another layer of abstraction on top of that?
+# if [ -f /tmp/src/nginx.conf ]; then
+#   mv /tmp/src/nginx.conf /etc/nginx/nginx.conf
+# fi

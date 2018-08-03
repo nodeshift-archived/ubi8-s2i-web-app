@@ -2,11 +2,11 @@
 
 set -e
 
-# We will turn off daemonizing for the nginx process so that the container
-# doesn't exit after the process runs.
 echo -e "Running as user $(id)"
-echo "starting nginx server with daemon off"
-exec /usr/sbin/nginx -g "daemon off;"
+
+echo "Maybe you don't really want to do this and use a chained build instead?"
+
+npx serve -s $DEPLOY_DIR -l 8080
 
 # # Allow debugging the builder image itself, by using:
 # # $ docker run -it bucharestgold/centos-s2i-nodejs --debug

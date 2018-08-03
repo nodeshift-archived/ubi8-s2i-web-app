@@ -4,7 +4,9 @@
 
 Using this image with OpenShift `oc` command line tool, or with `s2i` directly, will
 assemble your application source with its required dependencies, creating a new
-container image. This image contains your Singe Page Web Application and can be run either on OpenShift or directly on Docker.
+container image. This image contains your built Modern Web Application.
+
+The built files will be located in `/opt/app-root/src/$OUTPUT_DIR`
 
 ### OpenShift
 
