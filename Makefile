@@ -11,7 +11,7 @@ TARGET=$(IMAGE_NAME):$(IMAGE_TAG)
 .PHONY: all
 all: build squash
 
-build: Dockerfile s2i contrib
+build: Dockerfile s2i
 	docker build -t $(TARGET) .
 
 .PHONY: squash
