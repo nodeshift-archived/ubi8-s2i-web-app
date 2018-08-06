@@ -6,7 +6,7 @@ Using this image with OpenShift `oc` command line tool, or with `s2i` directly, 
 assemble your application source with its required dependencies, creating a new
 container image. This image contains your built Modern Web Application.
 
-The built files will be located in `/opt/app-root/src/$OUTPUT_DIR`
+The built files will be located in `/opt/app-root/output`
 
 ### OpenShift
 

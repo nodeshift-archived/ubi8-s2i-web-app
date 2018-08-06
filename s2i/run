@@ -4,7 +4,8 @@ set -e
 
 echo -e "Running as user $(id)"
 
-echo "Maybe you don't really want to do this and use a chained build instead?"
+echo "Running this container is only recommended when running in test or development."
+echo "It is recommended to use this s2i image as a pure builder image and use it with an openshift chain buildhttps://docs.okd.io/latest/dev_guide/builds/advanced_build_operations.html#dev-guide-chaining-builds"
 
 npx serve -s $DEPLOY_DIR -l 8080
 
