@@ -44,6 +44,7 @@ application image created from this builder image.
 NAME        | Description
 ------------|-------------
 OUTPUT_DIR  | Sets the location of the output directory
+NPM_BUILD_COMMAND | Override the default "npm run build"
 NPM_MIRROR  | Sets the npm registry URL
 HTTP_PROXY  | use an npm proxy during assembly
 HTTPS_PROXY | use an npm proxy during assembly
