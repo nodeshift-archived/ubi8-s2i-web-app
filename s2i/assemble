@@ -55,7 +55,8 @@ else
 	echo "---> Installing dependencies"
 	echo "---> Using 'npm install'"
 	npm install -s
-	npm run build
+	$NPM_BUILD_COMMAND
+	# npm run build
 	echo "---> Cleaning up npm cache"
 	rm -rf .npm
 fi

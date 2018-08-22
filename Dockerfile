@@ -4,6 +4,7 @@ FROM bucharestgold/centos7-s2i-nodejs:latest
 EXPOSE 8080
 
 ENV OUTPUT_DIR=build \
+    NPM_BUILD_COMMAND="npm run build" \
     DEBUG_PORT=5858 \
     NODE_VERSION=${NODE_VERSION} \
     NPM_VERSION=${NPM_VERSION} \
