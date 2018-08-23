@@ -1,1 +1,3 @@
-IMAGE_TAG=0.0.3
+IMAGE_TAG=latest
+BG_IMAGE_TAG=latest
+LTS_TAG=

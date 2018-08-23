@@ -3,7 +3,7 @@
 # other than the README.md file.
 include versions.mk
 
-FROM=bucharestgold/centos7-s2i-nodejs
+FROM=bucharestgold/centos7-s2i-nodejs:${BG_IMAGE_TAG}
 IMAGE_NAME=bucharestgold/centos7-s2i-web-app
 
 TARGET=$(IMAGE_NAME):$(IMAGE_TAG)
@@ -12,7 +12,7 @@ TARGET=$(IMAGE_NAME):$(IMAGE_TAG)
 all: build squash
 
 build: Dockerfile s2i
-	docker build -t $(TARGET) .
+	docker build --build-arg BG_IMAGE_TAG=$(BG_IMAGE_TAG) -t $(TARGET) .
 
 .PHONY: squash
 squash:
@@ -30,11 +30,10 @@ clean:
 .PHONY: tag
 tag:
 	if [ ! -z $(LTS_TAG) ]; then docker tag $(TARGET) $(IMAGE_NAME):$(LTS_TAG); fi
-	docker tag $(TARGET) $(IMAGE_NAME):$(NODE_VERSION)
+	docker tag $(TARGET) $(IMAGE_NAME):$(IMAGE_TAG)
 
 .PHONY: publish
 publish: all
 	echo $(DOCKER_PASS) | docker login -u $(DOCKER_USER) --password-stdin
 	docker push $(TARGET)
-	docker push $(IMAGE_NAME):$(NODE_VERSION)
 	if [ ! -z $(LTS_TAG) ]; then docker push $(IMAGE_NAME):$(LTS_TAG); fi

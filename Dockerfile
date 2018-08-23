@@ -1,4 +1,5 @@
-FROM bucharestgold/centos7-s2i-nodejs:latest
+ARG BG_IMAGE_TAG
+FROM bucharestgold/centos7-s2i-nodejs:${BG_IMAGE_TAG}
 # This image provides a Node.JS environment you can use to build your Modern Web Applications
 
 EXPOSE 8080
