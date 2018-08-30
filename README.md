@@ -45,6 +45,8 @@ NAME        | Description
 ------------|-------------
 OUTPUT_DIR  | Sets the location of the output directory
 NPM_BUILD_COMMAND | Override the default "npm run build"
+NPM_RUN_COMMAND | Override the default "npx serve" command
+DEPLOY_PORT | Override the default(8080) port that the serve module uses
 NPM_MIRROR  | Sets the npm registry URL
 HTTP_PROXY  | use an npm proxy during assembly
 HTTPS_PROXY | use an npm proxy during assembly
@@ -54,3 +56,22 @@ in a `.s2i/environment` file in your source repository.
 
 Example: `DATABASE_USER=sampleUser`
 
+### Using for development
+
+While it is recommended to just use this image as a pure builder image, it can also be used for development.
+
+Taking React as an example, you can deploy your React Application to Openshift using something like this:
+
+`npx nodeshift --strictSSL=false --dockerImage=bucharestgold/centos7-s2i-web-app --build.env YARN_ENABLED=true --deploy.env NPM_RUN_COMMAND="yarn start" --deploy.port=3000 --expose`
+
+This will deploy the application and start the React Dev server(yarn start).
+
+Make sure to do this on your code directory, `chmod -R g+w .`, it is needed for the next step
+
+Then you can use the `oc sync` command to push changes from your local machine to your running deployment:
+
+oc rsync --progress --watch ./src POD_NAME:/opt/app-root/src
+
+_note: a quick way to get a pod name is `oc get pods | grep react-web-app | grep Running | awk '{print $1}'`_
+
+Make a change locally, and it will be pushed to your running deployment, where the react dev server will recompile your app and refresh your browser.

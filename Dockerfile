@@ -6,6 +6,8 @@ EXPOSE 8080
 
 ENV OUTPUT_DIR=build \
     NPM_BUILD_COMMAND="npm run build" \
+    DEPLOY_DIR=/opt/app-root/output \
+    DEPLOY_PORT=8080 \
     DEBUG_PORT=5858 \
     NODE_VERSION=${NODE_VERSION} \
     NPM_VERSION=${NPM_VERSION} \
