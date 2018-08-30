@@ -7,10 +7,10 @@ echo -e "Running as user $(id)"
 echo "Running this container is only recommended when running in test or development."
 echo "It is recommended to use this s2i image as a pure builder image and use it with an openshift chain build https://docs.okd.io/latest/dev_guide/builds/advanced_build_operations.html#dev-guide-chaining-builds"
 
-if [ ! -z "$NPM_RUN_COMMAND" ]; then
-  $NPM_RUN_COMMAND
+if [ ! -z "$NPM_RUN" ]; then
+  $NPM_RUN
 else
-  npx serve -s $DEPLOY_DIR -l $DEPLOY_PORT
+  npx serve -s /opt/app-root/output -l $DEPLOY_PORT
 fi
 
 # # Allow debugging the builder image itself, by using:

@@ -55,15 +55,15 @@ else
 	echo "---> Installing dependencies"
 	echo "---> Using 'npm install'"
 	npm install -s
-	$NPM_BUILD_COMMAND
+	$NPM_BUILD
 	# npm run build
 	echo "---> Cleaning up npm cache"
 	rm -rf .npm
 fi
 
-echo "----> moving built web application to $DEPLOY_DIR"
-mkdir -p $DEPLOY_DIR
-mv ./$OUTPUT_DIR/* $DEPLOY_DIR
+echo "----> moving built web application to /opt/app-root/output"
+mkdir -p /opt/app-root/output
+mv ./$OUTPUT_DIR/* /opt/app-root/output
 
 
 # echo "---> Building and Installing Web Application from source..."

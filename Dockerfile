@@ -5,8 +5,7 @@ FROM bucharestgold/centos7-s2i-nodejs:${BG_IMAGE_TAG}
 EXPOSE 8080
 
 ENV OUTPUT_DIR=build \
-    NPM_BUILD_COMMAND="npm run build" \
-    DEPLOY_DIR=/opt/app-root/output \
+    NPM_BUILD="npm run build" \
     DEPLOY_PORT=8080 \
     DEBUG_PORT=5858 \
     NODE_VERSION=${NODE_VERSION} \
