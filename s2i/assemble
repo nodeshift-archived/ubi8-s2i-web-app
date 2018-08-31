@@ -55,16 +55,15 @@ else
 	echo "---> Installing dependencies"
 	echo "---> Using 'npm install'"
 	npm install -s
-	$NPM_BUILD_COMMAND
+	$NPM_BUILD
 	# npm run build
 	echo "---> Cleaning up npm cache"
 	rm -rf .npm
 fi
 
-DEPLOY_DIR=/opt/app-root/output
-echo "----> moving built web application to $DEPLOY_DIR"
-mkdir -p $DEPLOY_DIR
-mv ./$OUTPUT_DIR/* $DEPLOY_DIR
+echo "----> moving built web application to /opt/app-root/output"
+mkdir -p /opt/app-root/output
+mv ./$OUTPUT_DIR/* /opt/app-root/output
 
 
 # echo "---> Building and Installing Web Application from source..."
@@ -74,3 +73,6 @@ mv ./$OUTPUT_DIR/* $DEPLOY_DIR
 # if [ -f /tmp/src/nginx.conf ]; then
 #   mv /tmp/src/nginx.conf /etc/nginx/nginx.conf
 # fi
+
+echo "---> Fix permissions on app-root"
+fix-permissions /opt/app-root
