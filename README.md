@@ -1,5 +1,7 @@
 # OpenShift Builder Images for Web Applications
 
+[![Build Status](https://travis-ci.org/bucharest-gold/centos7-s2i-web-app.svg?branch=master)](https://travis-ci.org/bucharest-gold/centos7-s2i-web-app)
+
 ## Usage
 
 Using this image with OpenShift `oc` command line tool, or with `s2i` directly, will
