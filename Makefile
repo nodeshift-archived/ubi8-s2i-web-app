@@ -9,7 +9,7 @@ IMAGE_NAME=bucharestgold/centos7-s2i-web-app
 TARGET=$(IMAGE_NAME):$(IMAGE_TAG)
 
 .PHONY: all
-all: build squash
+all: build squash test
 
 build: Dockerfile s2i
 	docker build --build-arg BG_IMAGE_TAG=$(BG_IMAGE_TAG) -t $(TARGET) .
