@@ -5,11 +5,9 @@ FROM bucharestgold/centos7-s2i-nodejs:${BG_IMAGE_TAG}
 EXPOSE 8080
 
 ENV OUTPUT_DIR=build \
+    NPM_RUN= \
     NPM_BUILD="npm run build" \
     DEPLOY_PORT=8080 \
-    DEBUG_PORT=5858 \
-    NODE_VERSION=${NODE_VERSION} \
-    NPM_VERSION=${NPM_VERSION} \
     SUMMARY="Platform for building Modern Web Applications that use Node.js" \
     DESCRIPTION="Web Application building with Node.js"
 

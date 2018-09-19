@@ -57,7 +57,7 @@ prepare() {
 
 run_test_application() {
   echo "Starting test application ${APP_IMAGE}..."
-  docker run --cidfile=${cid_file} -p ${test_port}:${test_port} $1 ${APP_IMAGE}
+  docker run -d --cidfile=${cid_file} -p ${test_port}:${test_port} $1 ${APP_IMAGE}
 }
 
 cleanup() {
@@ -91,8 +91,8 @@ check_result() {
 }
 
 wait_for_cid() {
-  local max_attempts=10
-  local sleep_time=1
+  local max_attempts=20
+  local sleep_time=2
   local attempt=1
   local result=1
   while [ $attempt -le $max_attempts ]; do
@@ -115,8 +115,8 @@ test_docker_run_usage() {
 
 test_connection() {
   echo "Testing HTTP connection..."
-  local max_attempts=10
-  local sleep_time=1
+  local max_attempts=30
+  local sleep_time=2
   local attempt=1
   local result=1
   while [ $attempt -le $max_attempts ]; do
@@ -170,8 +170,8 @@ test_directory_permissions() {
 }
 
 test_post_install() {
-  local run_cmd="ls greeting.js"
-  local expected="greeting.js"
+  local run_cmd="ls public/"
+  local expected="index.html"
 
   echo "Checking post install ..."
   out=$(docker exec $(cat ${cid_file}) /bin/bash -c "${run_cmd}")
@@ -249,60 +249,25 @@ test_docker_run_usage
 check_result $?
 
 # Verify that the HTTP connection can be established to test application container
-run_test_application &
+run_test_application
 
-# # Wait for the container to write it's CID file
-# wait_for_cid
+# Wait for the container to write it's CID file
+wait_for_cid
 
-# test_directory_permissions
-# check_result $?
+test_directory_permissions
+check_result $?
 
-# test_post_install
-# check_result $?
+test_post_install
+check_result $?
 
-# test_node_version
-# check_result $?
+test_node_version
+check_result $?
 
-# test_connection
-# check_result $?
+test_connection
+check_result $?
 
-# test_git_configuration
-# check_result $?
-
-# echo "Testing DEV_MODE=false (default)"
-# logs=$(container_logs)
-# echo ${logs} | grep -q DEV_MODE=false
-# check_result $?
-# echo ${logs} | grep -q NODE_ENV=production
-# check_result $?
-# echo ${logs} | grep -q DEBUG_PORT=5858
-# check_result $?
-# test_no_development_dependencies
-# check_result $?
-# # The argument to clean up is the DEV_MODE
-# cleanup false
-
-# run_test_application "-e DEV_MODE=true" &
-# wait_for_cid
-# echo "$(cat ${cid_file}) running"
-# echo "Testing DEV_MODE=true"
-# logs=$(container_logs)
-# echo ${logs} | grep -q DEV_MODE=true
-# check_result $?
-# echo "Testing NODE_ENV=development"
-# echo ${logs} | grep -q NODE_ENV=development
-# check_result $?
-# echo "Testing DEBUG_PORT=5858"
-# echo ${logs} | grep -q DEBUG_PORT=5858
-# check_result $?
-# # # Ensure that we install dev dependencies in dev mode
-# sleep 10
-# echo "Testing dev dependencies"
-# test_development_dependencies
-# check_result $?
-# echo "Testing symlinks"
-# test_symlinks
-# check_result $?
+test_git_configuration
+check_result $?
 
 # The argument to clean up is the DEV_MODE
 cleanup true
