@@ -30,14 +30,6 @@ container_exists() {
   image_exists $(cat $cid_file)
 }
 
-container_ip() {
-  docker inspect --format="{{ .NetworkSettings.IPAddress }}" $(cat $cid_file)
-}
-
-container_logs() {
-  docker logs $(cat $cid_file)
-}
-
 run_s2i_build() {
   echo "Running s2i build ${s2i_args} ${test_dir}/test-react-app ${BUILDER} ${APP_IMAGE}"
   s2i build ${s2i_args} --exclude "(^|/)node_modules(/|$)" ${test_dir}/test-react-app ${BUILDER} ${APP_IMAGE}
@@ -84,7 +76,7 @@ cleanup() {
 check_result() {
   local result="$1"
   if [[ "$result" != "0" ]]; then
-    echo "STI image '${BUILDER}' test FAILED (exit code: ${result})"
+    echo "S2I image '${BUILDER}' test FAILED (exit code: ${result})"
     cleanup
     exit $result
   fi
@@ -193,44 +185,6 @@ test_development_dependencies() {
   fi
 }
 
-test_no_development_dependencies() {
-  local run_cmd="if [ -d node_modules/nodemon ] ; then echo 'exists' ; else echo 'not exists' ; fi"
-  local expected="not exists"
-
-  echo "Checking development dependencies not installed ..."
-  out=$(docker exec $(cat ${cid_file}) /bin/bash -c "${run_cmd}")
-  if ! echo "${out}" | grep -q "${expected}"; then
-    echo "ERROR[exec /bin/bash -c "${run_cmd}"] Expected '${expected}', got '${out}'"
-    return 1
-  fi
-}
-
-test_symlinks() {
-  local run_cmd="test -h node_modules/.bin/tape; echo $?"
-  local expected="0"
-
-  echo "Checking symlinks ..."
-  out=$(docker exec $(cat ${cid_file}) /bin/bash -c "${run_cmd}")
-  if ! echo "${out}" | grep -q "${expected}"; then
-    echo "ERROR[exec /bin/bash -c "${run_cmd}"] Expected '${expected}', got '${out}'"
-    return 1
-  fi
-}
-
-test_git_configuration() {
-  local run_cmd="git config -l"
-  local expected="url.https://github.com.insteadof=git@github.com:
-url.https://.insteadof=ssh://
-url.https://github.com.insteadof=ssh://git@github.com"
-
-  echo "Checking git configuration ..."
-  out=$(docker exec $(cat ${cid_file}) /bin/bash -c "${run_cmd}")
-  if ! echo "${out}" | grep -q "${expected}"; then
-    echo "ERROR[exec /bin/bash -c "${run_cmd}"] Expected '${expected}', got '${out}'"
-    return 1
-  fi
-}
-
 # Build the application image twice to ensure the 'save-artifacts' and
 # 'restore-artifacts' scripts are working properly
 prepare
@@ -264,9 +218,6 @@ test_node_version
 check_result $?
 
 test_connection
-check_result $?
-
-test_git_configuration
 check_result $?
 
 # The argument to clean up is the DEV_MODE
