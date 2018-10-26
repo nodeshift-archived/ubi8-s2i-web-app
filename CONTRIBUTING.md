@@ -1,4 +1,4 @@
-# Contributing to `centos7-s2i-nodejs`
+# Contributing to `centos7-s2i-web-app`
 
 We are a community-driven, open source project and we welcome
 contributions!
@@ -25,8 +25,8 @@ make build
 Clone a copy of this repository
 
 ```
-git clone https://github.com/bucharest-gold/centos7-s2i-nodejs.git
-cd centos7-s2i-nodejs
+git clone https://github.com/nodeshift/centos7-s2i-web-app.git
+cd centos7-s2i-web-app
 ```
 
 Make your changes, and be sure that all tests pass.
@@ -35,5 +35,5 @@ Make your changes, and be sure that all tests pass.
 make test
 ```
 
-Then open a [pull request](https://github.com/bucharest-gold/centos7-s2i-nodejs/compare).
+Then open a [pull request](https://github.com/nodeshift/centos7-s2i-web-app/compare).
 

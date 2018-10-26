@@ -3,8 +3,8 @@
 # other than the README.md file.
 include versions.mk
 
-FROM=bucharestgold/centos7-s2i-nodejs:${BG_IMAGE_TAG}
-IMAGE_NAME=bucharestgold/centos7-s2i-web-app
+FROM=nodeshift/centos7-s2i-nodejs:${BG_IMAGE_TAG}
+IMAGE_NAME=nodeshift/centos7-s2i-web-app
 
 TARGET=$(IMAGE_NAME):$(IMAGE_TAG)
 

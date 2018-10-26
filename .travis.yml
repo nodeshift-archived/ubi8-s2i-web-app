@@ -8,7 +8,7 @@ script:
   - SKIP_SQUASH=true make all
 
 notifications:
-  irc: "chat.freenode.net#bucharest-gold"
+  irc: "chat.freenode.net#nodeshift"
 
 branches:
   only:
