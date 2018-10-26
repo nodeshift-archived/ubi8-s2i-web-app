@@ -1,3 +1,3 @@
-IMAGE_TAG=latest
-BG_IMAGE_TAG=latest
+IMAGE_TAG=11.x
+BG_IMAGE_TAG=11.x
 LTS_TAG=
