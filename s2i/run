@@ -14,5 +14,5 @@ else
 fi
 
 # # Allow debugging the builder image itself, by using:
-# # $ docker run -it bucharestgold/centos-s2i-nodejs --debug
+# # $ docker run -it nodeshift/centos7-s2i-web-app --debug
 [ "$1" == "--debug" ] && exec /bin/bash
