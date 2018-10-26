@@ -1,6 +1,6 @@
 # OpenShift Builder Images for Web Applications
 
-[![Build Status](https://travis-ci.org/bucharest-gold/centos7-s2i-web-app.svg?branch=master)](https://travis-ci.org/bucharest-gold/centos7-s2i-web-app)
+[![Build Status](https://travis-ci.org/nodeshift/centos7-s2i-web-app.svg?branch=master)](https://travis-ci.org/nodeshift/centos7-s2i-web-app)
 
 ## Usage
 
@@ -17,7 +17,7 @@ used to start a build, layering your desired Web Application `REPO_URL` sources 
 image with your selected `RELEASE` of Node.js via the following command format:
 
 ```
-oc new-app bucharestgold/centos7-s2i-web-app:latest~https://github.com/bucharest-gold/nodejs-rest-http
+oc new-app nodeshift/centos7-s2i-web-app:latest~https://github.com/lholmquist/react-web-app
 ```
 
 ### Docker
@@ -29,7 +29,7 @@ in Docker.
 This example will produce a new Docker image named `webapp`:
 
 ```
-s2i build https://github.com/bucharest-gold/centos7-s2i-web-app --context-dir=test/test-react-app/ bucharestgold/centos7-s2i-web-app:latest webapp
+s2i build https://github.com/nodeshift/centos7-s2i-web-app --context-dir=test/test-react-app/ nodeshift/centos7-s2i-web-app:latest webapp
 ```
 
 Then you can run the application image like this.
@@ -64,7 +64,7 @@ While it is recommended to just use this image as a pure builder image, it can a
 
 Taking React as an example, you can deploy your React Application to Openshift using something like this:
 
-`npx nodeshift --strictSSL=false --dockerImage=bucharestgold/centos7-s2i-web-app --build.env YARN_ENABLED=true --deploy.env NPM_RUN="yarn start" --deploy.port=3000 --expose`
+`npx nodeshift --strictSSL=false --dockerImage=nodeshift/centos7-s2i-web-app --build.env YARN_ENABLED=true --deploy.env NPM_RUN="yarn start" --deploy.port=3000 --expose`
 
 This will deploy the application and start the React Dev server(yarn start).
 
