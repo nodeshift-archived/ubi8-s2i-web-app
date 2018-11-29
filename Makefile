@@ -9,15 +9,10 @@ IMAGE_NAME=nodeshift/centos7-s2i-web-app
 TARGET=$(IMAGE_NAME):$(IMAGE_TAG)
 
 .PHONY: all
-all: build squash test
+all: build test
 
 build: Dockerfile s2i
 	docker build --build-arg BG_IMAGE_TAG=$(BG_IMAGE_TAG) -t $(TARGET) .
-
-.PHONY: squash
-squash:
-	if [ -z $(SKIP_SQUASH) ] ; then docker-squash -f $(FROM) $(TARGET) -t $(TARGET); fi
-
 
 .PHONY: test
 test: build
