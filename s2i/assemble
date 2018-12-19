@@ -62,7 +62,13 @@ else
 fi
 
 echo "----> moving built web application to /opt/app-root/output"
+# Need to remove the output directory first
+rm -rf /opt/app-root/output
+
+# Recreate the directory
 mkdir -p /opt/app-root/output
+
+# Move the files from our apps output directory to the common output directory
 mv ./$OUTPUT_DIR/* /opt/app-root/output
 
 
