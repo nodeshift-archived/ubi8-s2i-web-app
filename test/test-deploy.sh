@@ -8,13 +8,13 @@ docker login -u `oc whoami` -p `oc whoami -t` 172.30.1.1:5000
 oc new-project nodeshift
 
 # Creates a tag on openshift docker registry based on the local created image.
-docker tag nodeshift/centos7-s2i-web-app:10.x 172.30.1.1:5000/nodeshift/centos7-s2i-web-app:10.x
+docker tag nodeshift/centos7-s2i-web-app:latest 172.30.1.1:5000/nodeshift/centos7-s2i-web-app:latest
 
 # Pushes the image to the openshift docker registry.
-docker push 172.30.1.1:5000/nodeshift/centos7-s2i-web-app:10.x
+docker push 172.30.1.1:5000/nodeshift/centos7-s2i-web-app:latest
 
 # Creates a new app based on the pushed image.
-oc new-app 172.30.1.1:5000/nodeshift/centos7-s2i-web-app:10.x~https://github.com/lholmquist/react-web-app
+oc new-app 172.30.1.1:5000/nodeshift/centos7-s2i-web-app:latest~https://github.com/lholmquist/react-web-app
 
 # Exposes to confirm that the app was successfully deployed.
 timeout 1m oc expose svc/react-web-app
