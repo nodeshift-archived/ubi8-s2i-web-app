@@ -46,7 +46,7 @@
         "referencePolicy": {
           "type": "Local"
         }
-      }
+      },
       {
         "name": "11.x",
         "annotations": {
