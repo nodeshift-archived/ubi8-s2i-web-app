@@ -12,7 +12,7 @@ TARGET=$(IMAGE_NAME):$(IMAGE_TAG)
 all: build test
 
 build: Dockerfile s2i
-	docker build --build-arg BG_IMAGE_TAG=$(BG_IMAGE_TAG) -t $(TARGET) .
+	docker build --build-arg BG_IMAGE_TAG=$(BG_IMAGE_TAG) --pull -t $(TARGET) .
 
 .PHONY: test
 test: build
