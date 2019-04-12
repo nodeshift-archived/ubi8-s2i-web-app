@@ -2,7 +2,7 @@
   "kind": "ImageStream",
   "apiVersion": "v1",
   "metadata": {
-    "name": "webapp",
+    "name": "modern-webapp",
     "annotations": {
       "openshift.io/display-name": "Tech Preview - Modern Web Applications"
     }
@@ -16,8 +16,8 @@
           "openshift.io/provider-display-name": "Red Hat, Inc.",
           "description": "Build and run Modern Web Applications on RHEL 7. For more information about using this builder image, including OpenShift considerations, see https://github.com/nodeshift/centos7-s2i-web-app.\n\nWARNING: By selecting this tag, your application will automatically update to use the latest version of Node.js available on OpenShift, including major versions updates.",
           "iconClass": "icon-js",
-          "tags": "builder,webapp",
-          "supports":"webapp",
+          "tags": "builder,modern-webapp, webapp",
+          "supports":"modern-webapp",
           "sampleRepo": "https://github.com/nodeshift-starters/react-web-app"
         },
         "from": {
@@ -35,8 +35,8 @@
           "openshift.io/provider-display-name": "Red Hat, Inc.",
           "description": "Build and run Modern Web Applications on RHEL 7. For more information about using this builder image, including OpenShift considerations, see https://github.com/nodeshift/centos7-s2i-web-app.",
           "iconClass": "icon-js",
-          "tags": "builder,webapp",
-          "supports":"webapp",
+          "tags": "builder,modern-webapp, webapp",
+          "supports":"modern-webapp",
           "version": "10",
           "sampleRepo": "https://github.com/nodeshift-starters/react-web-app"
         },
