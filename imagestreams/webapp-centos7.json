@@ -22,7 +22,7 @@
         },
         "from": {
           "kind": "ImageStreamTag",
-          "name": "11.x"
+          "name": "12.x"
         },
         "referencePolicy": {
           "type": "Local"
@@ -63,6 +63,26 @@
         "from": {
           "kind": "DockerImage",
           "name": "docker.io/nodeshift/centos7-s2i-web-app:11.x"
+        },
+        "referencePolicy": {
+          "type": "Local"
+        }
+      },
+      {
+        "name": "12.x",
+        "annotations": {
+          "openshift.io/display-name": "Modern Web Applications (12.x)",
+          "openshift.io/provider-display-name": "Red Hat, Inc.",
+          "description": "Build and run Modern Web Applications on CentOS 7. For more information about using this builder image, including OpenShift considerations, see https://github.com/nodeshift/centos7-s2i-web-app.",
+          "iconClass": "icon-js",
+          "tags": "builder,webapp",
+          "supports":"webapp",
+          "version": "12",
+          "sampleRepo": "https://github.com/nodeshift-starters/react-web-app"
+        },
+        "from": {
+          "kind": "DockerImage",
+          "name": "docker.io/nodeshift/centos7-s2i-web-app:12.x"
         },
         "referencePolicy": {
           "type": "Local"
