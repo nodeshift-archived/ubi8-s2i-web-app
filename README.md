@@ -65,7 +65,7 @@ While it is recommended to just use this image as a pure builder image, it can a
 
 Taking React as an example, you can deploy your React Application to Openshift using something like this:
 
-`npx nodeshift --strictSSL=false --dockerImage=nodeshift/centos7-s2i-web-app --build.env YARN_ENABLED=true --deploy.env NPM_RUN="yarn start" --deploy.port=3000 --expose`
+`npx nodeshift --strictSSL=false --dockerImage=nodeshift/centos7-s2i-web-app --build.env YARN_ENABLED=true --deploy.env NPM_RUN="npx yarn start" --deploy.port=3000 --expose`
 
 This will deploy the application and start the React Dev server(yarn start).
 
