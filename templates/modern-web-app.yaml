@@ -92,7 +92,7 @@ objects:
               value: ${YARN_ENABLED}
           from:
             kind: DockerImage
-            name: 'nodeshift/centos7-s2i-web-app:10.x'
+            name: 'nodeshift/ubi8-s2i-web-app:10.x'
       triggers:
         - github:
             secret: '${GITHUB_WEBHOOK_SECRET}'
