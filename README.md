@@ -1,6 +1,6 @@
 # OpenShift Builder Images for Web Applications
 
-[![Build Status](https://travis-ci.org/nodeshift/centos7-s2i-web-app.svg?branch=master)](https://travis-ci.org/nodeshift/centos7-s2i-web-app)
+[![Build Status](https://travis-ci.org/nodeshift/ubi8-s2i-web-app.svg?branch=master)](https://travis-ci.org/nodeshift/ubi8-s2i-web-app)
 
 ## Usage
 
@@ -13,11 +13,11 @@ The built files will be located in `/opt/app-root/output`
 ### OpenShift
 
 The [`oc` command-line tool](https://github.com/openshift/origin/releases) can be
-used to start a build, layering your desired Web Application `REPO_URL` sources into a centos7
+used to start a build, layering your desired Web Application `REPO_URL` sources into a ubi8
 image with your selected `RELEASE` of Node.js via the following command format:
 
 ```
-oc new-app nodeshift/centos7-s2i-web-app:latest~https://github.com/lholmquist/react-web-app
+oc new-app nodeshift/ubi8-s2i-web-app:latest~https://github.com/lholmquist/react-web-app
 ```
 
 ### Docker
@@ -29,7 +29,7 @@ in Docker.
 This example will produce a new Docker image named `webapp`:
 
 ```
-s2i build https://github.com/nodeshift/centos7-s2i-web-app --context-dir=test/test-react-app/ nodeshift/centos7-s2i-web-app:latest webapp
+s2i build https://github.com/nodeshift/ubi8-s2i-web-app --context-dir=test/test-react-app/ nodeshift/ubi8-s2i-web-app:latest webapp
 ```
 
 Then you can run the application image like this.
@@ -65,7 +65,7 @@ While it is recommended to just use this image as a pure builder image, it can a
 
 Taking React as an example, you can deploy your React Application to Openshift using something like this:
 
-`npx nodeshift --strictSSL=false --dockerImage=nodeshift/centos7-s2i-web-app --build.env YARN_ENABLED=true --deploy.env NPM_RUN="npx yarn start" --deploy.port=3000 --expose`
+`npx nodeshift --strictSSL=false --dockerImage=nodeshift/ubi8-s2i-web-app --build.env YARN_ENABLED=true --deploy.env NPM_RUN="npx yarn start" --deploy.port=3000 --expose`
 
 This will deploy the application and start the React Dev server(yarn start).
 

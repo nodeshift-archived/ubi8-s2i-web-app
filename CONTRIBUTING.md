@@ -1,4 +1,4 @@
-# Contributing to `centos7-s2i-web-app`
+# Contributing to `ubi8-s2i-web-app`
 
 We are a community-driven, open source project and we welcome
 contributions!
@@ -24,8 +24,8 @@ make build
 Clone a copy of this repository
 
 ```
-git clone https://github.com/nodeshift/centos7-s2i-web-app.git
-cd centos7-s2i-web-app
+git clone https://github.com/nodeshift/ubi8-s2i-web-app.git
+cd ubi8-s2i-web-app
 ```
 
 Make your changes, and be sure that all tests pass.
@@ -34,5 +34,5 @@ Make your changes, and be sure that all tests pass.
 make test
 ```
 
-Then open a [pull request](https://github.com/nodeshift/centos7-s2i-web-app/compare).
+Then open a [pull request](https://github.com/nodeshift/ubi8-s2i-web-app/compare).
 
