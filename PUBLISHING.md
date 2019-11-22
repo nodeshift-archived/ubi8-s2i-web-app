@@ -1,4 +1,4 @@
-# Publishing the `centos7-s2i-nodejs` images to Docker Hub
+# Publishing the `ubi8-s2i-nodejs` images to Docker Hub
 
 There are a couple of different scenarios that would require newly
 published images. The obvious case is when there is a new Node.js

@@ -1,5 +1,5 @@
-ARG BG_IMAGE_TAG
-FROM nodeshift/centos7-s2i-nodejs:${BG_IMAGE_TAG}
+ARG UBI_NODE_VERSION
+FROM registry.access.redhat.com/ubi8/nodejs-${UBI_NODE_VERSION}
 # This image provides a Node.JS environment you can use to build your Modern Web Applications
 
 EXPOSE 8080
@@ -20,7 +20,7 @@ LABEL io.k8s.description="$DESCRIPTION" \
       summary="$SUMMARY" \
       description="$DESCRIPTION" \
       version="$NODE_VERSION" \
-      name="nodeshift/centos7-s2i-web-app"
+      name="nodeshift/ubi8-s2i-web-app"
 
 COPY ./s2i/ $STI_SCRIPTS_PATH
 
