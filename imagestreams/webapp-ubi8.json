@@ -1,0 +1,73 @@
+{
+  "kind": "ImageStream",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "webapp",
+    "annotations": {
+      "openshift.io/display-name": "Modern Web Applications"
+    }
+  },
+  "spec": {
+    "tags": [
+      {
+        "name": "latest",
+        "annotations": {
+          "openshift.io/display-name": "Modern Web Applications (Latest)",
+          "openshift.io/provider-display-name": "Red Hat, Inc.",
+          "description": "Build and run Modern Web Applications on UBI 8. For more information about using this builder image, including OpenShift considerations, see https://github.com/nodeshift/ubi8-s2i-web-app.\n\nWARNING: By selecting this tag, your application will automatically update to use the latest version of Node.js available on OpenShift, including major versions updates.",
+          "iconClass": "icon-js",
+          "tags": "builder,webapp",
+          "supports":"webapp",
+          "sampleRepo": "https://github.com/nodeshift-starters/react-web-app"
+        },
+        "from": {
+          "kind": "ImageStreamTag",
+          "name": "12.x"
+        },
+        "referencePolicy": {
+          "type": "Local"
+        }
+      },
+      {
+        "name": "10.x",
+        "annotations": {
+          "openshift.io/display-name": "Modern Web Applications (10.x)",
+          "openshift.io/provider-display-name": "Red Hat, Inc.",
+          "description": "Build and run Modern Web Applications on UBI 8. For more information about using this builder image, including OpenShift considerations, see https://github.com/nodeshift/ubi8-s2i-web-app.",
+          "iconClass": "icon-js",
+          "tags": "builder,webapp",
+          "supports":"webapp",
+          "version": "10",
+          "sampleRepo": "https://github.com/nodeshift-starters/react-web-app"
+        },
+        "from": {
+          "kind": "DockerImage",
+          "name": "docker.io/nodeshift/ubi8-s2i-web-app:10.x"
+        },
+        "referencePolicy": {
+          "type": "Local"
+        }
+      },
+      {
+        "name": "12.x",
+        "annotations": {
+          "openshift.io/display-name": "Modern Web Applications (12.x)",
+          "openshift.io/provider-display-name": "Red Hat, Inc.",
+          "description": "Build and run Modern Web Applications on CentOS 7. For more information about using this builder image, including OpenShift considerations, see https://github.com/nodeshift/ubi8-s2i-web-app.",
+          "iconClass": "icon-js",
+          "tags": "builder,webapp",
+          "supports":"webapp",
+          "version": "12",
+          "sampleRepo": "https://github.com/nodeshift-starters/react-web-app"
+        },
+        "from": {
+          "kind": "DockerImage",
+          "name": "docker.io/nodeshift/ubi8-s2i-web-app:12.x"
+        },
+        "referencePolicy": {
+          "type": "Local"
+        }
+      }
+    ]
+  }
+}

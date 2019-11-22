@@ -3,8 +3,7 @@
 # other than the README.md file.
 include versions.mk
 
-FROM=nodeshift/centos7-s2i-nodejs:${BG_IMAGE_TAG}
-IMAGE_NAME=nodeshift/centos7-s2i-web-app
+IMAGE_NAME=nodeshift/ubi8-s2i-web-app
 
 TARGET=$(IMAGE_NAME):$(IMAGE_TAG)
 
@@ -12,7 +11,7 @@ TARGET=$(IMAGE_NAME):$(IMAGE_TAG)
 all: build test
 
 build: Dockerfile s2i
-	docker build --build-arg BG_IMAGE_TAG=$(BG_IMAGE_TAG) --pull -t $(TARGET) .
+	docker build --build-arg UBI_NODE_VERSION=$(UBI_NODE_VERSION) --pull -t $(TARGET) .
 
 .PHONY: test
 test: build
