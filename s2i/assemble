@@ -60,7 +60,7 @@ git config --list
 if [ ! -z "$YARN_ENABLED" ]; then
 	echo "---> Using 'yarn install' with YARN_ARGS"
 	npx yarn install $YARN_ARGS
-	npx yarn build
+	$YARN_BUILD
 else
 	echo "---> Installing dependencies"
 	echo "---> Using 'npm install'"
