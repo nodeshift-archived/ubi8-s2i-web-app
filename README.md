@@ -48,6 +48,8 @@ NAME        | Description
 OUTPUT_DIR  | Sets the location of the output directory
 NPM_BUILD | Override the default "npm run build"
 NPM_RUN | Override the default "npx serve" command
+YARN_BUILD | Override the default "yarn build"
+YARN_ENABLED | Use "yarn" instead of "npm"
 DEPLOY_PORT | Override the default(8080) port that the serve module uses
 NPM_MIRROR  | Sets the npm registry URL
 HTTP_PROXY  | use an npm proxy during assembly

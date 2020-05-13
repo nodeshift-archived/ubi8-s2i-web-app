@@ -7,6 +7,7 @@ EXPOSE 8080
 ENV OUTPUT_DIR=build \
     NPM_RUN= \
     NPM_BUILD="npm run build" \
+    YARN_BUILD="npx yarn build" \
     DEPLOY_PORT=8080 \
     SUMMARY="Platform for building Modern Web Applications that use Node.js" \
     DESCRIPTION="Web Application building with Node.js"
