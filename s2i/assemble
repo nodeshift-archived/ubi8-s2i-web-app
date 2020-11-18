@@ -55,8 +55,8 @@ if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
 fi
 
 echo "---> Building your Web Application from source"
-echo -e "Current git config"
-git config --list
+# echo -e "Current git config"
+# git config --list
 if [ ! -z "$YARN_ENABLED" ]; then
 	echo "---> Using 'yarn install' with YARN_ARGS"
 	npx yarn install $YARN_ARGS
