@@ -9,5 +9,5 @@ script:
 
 branches:
   only:
-  - master
+  - main
   - /^[10-12]+.*$/

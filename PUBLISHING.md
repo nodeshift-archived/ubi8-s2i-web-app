@@ -19,18 +19,18 @@ $ export DOCKER_PASS=xxxxxxxxx
 When we need to publish new images because the underlying builder
 (and not Node.js itself) has changed. The process is pretty simple.
 
-Check out the master branch and be sure you are up to date.
+Check out the main branch and be sure you are up to date.
 
 ```sh
 $ git fetch upstream
-$ git rebase upstream/master master
+$ git rebase upstream/main main
 ```
 
-Make your code changes, then test and commit them. The `master` branch
+Make your code changes, then test and commit them. The `main` branch
 can be published without a tag since it does not track a specific release.
 
 ```sh
-$ git push upstream master
+$ git push upstream main
 $ make tag publish
 ```
 
@@ -40,7 +40,7 @@ each branch, apply the changes, test, commit and publish.
 
 ```sh
 $ git checkout 8.x
-$ git cherry-pick <sha> # get the commit that you applied in master
+$ git cherry-pick <sha> # get the commit that you applied in main
 ```
 
 If the cherry-picking fails, you'll need to figure out what went wrong
@@ -95,12 +95,12 @@ git push upstream 9.x --follow-tags
 ## New major version
 
 If there is a new major version released, we'll need to create
-a new branch for it. The `master` branch is always tracking the
+a new branch for it. The `main` branch is always tracking the
 latest Node.js version, so let's start there. Node 10 is released.
 
 ```sh
 # update with any changes not present locally
-git pull upstream master
+git pull upstream main
 
 # Create a new branch for the version
 git checkout -b v10.x
