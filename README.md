@@ -1,6 +1,6 @@
 # OpenShift Builder Images for Web Applications
 
-[![Build Status](https://travis-ci.org/nodeshift/ubi8-s2i-web-app.svg?branch=master)](https://travis-ci.org/nodeshift/ubi8-s2i-web-app)
+[![Build Status](https://travis-ci.org/nodeshift/ubi8-s2i-web-app.svg?branch=main)](https://travis-ci.org/nodeshift/ubi8-s2i-web-app)
 
 ## Usage
 
