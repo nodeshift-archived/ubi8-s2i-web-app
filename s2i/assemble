@@ -2,6 +2,8 @@
 
 set -e
 
+export NPM_CONFIG_LOGLEVEL=${NPM_CONFIG_LOGLEVEL-silent}
+
 # Check to see if there is a node_modules folder
 if [ "$(ls -A /tmp/src/node_modules)" ]; then
 	echo "---> Removing the node_modules folder"
@@ -64,7 +66,7 @@ if [ ! -z "$YARN_ENABLED" ]; then
 else
 	echo "---> Installing dependencies"
 	echo "---> Using 'npm install'"
-	npm install -s
+	npm install
 	$NPM_BUILD
 	# npm run build
 	echo "---> Cleaning up npm cache"
