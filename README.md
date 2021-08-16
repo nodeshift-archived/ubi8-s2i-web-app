@@ -55,6 +55,7 @@ NPM_MIRROR  | Sets the npm registry URL
 HTTP_PROXY  | use an npm proxy during assembly
 HTTPS_PROXY | use an npm proxy during assembly
 NO_PROXY | set URLs that should be excluded from proxying during assembly
+NPM_CONFIG_LOGLEVEL | sets the npm log level
 
 One way to define a set of environment variables is to include them as key value pairs
 in a `.s2i/environment` file in your source repository.
