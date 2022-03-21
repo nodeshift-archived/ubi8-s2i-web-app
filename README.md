@@ -1,3 +1,7 @@
+# DEPRECATED
+
+This is no longer supported, please consider using the [Red Hat Node.js UBI Image](https://catalog.redhat.com/software/containers/ubi8/nodejs-16/615aee9fc739c0a4123a87e1) instead.
+
 # OpenShift Builder Images for Web Applications
 
 [![Build Status](https://travis-ci.org/nodeshift/ubi8-s2i-web-app.svg?branch=main)](https://travis-ci.org/nodeshift/ubi8-s2i-web-app)
